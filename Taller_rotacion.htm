@@ -79,21 +79,14 @@ var letra_c_2 = [40,540, 190,540, 190,580, 85,580, 85,685, 190,685, 190,725, 40,
 //Esta sera la letra C aumentada 500 hacia abajo.
 
 
-var r = 75;
+ vt = centroGeom(coord);    // calcular el vecor de traslacion [x, y]
+        ctx.translate(-vt[0], -vt[1]);   // ubicacion centro de la figura en el origen de coordenadas
 
-var letra_c_rotada = RotacionDeObj(letra_c, r)
+        ctx.rotate(-4/48*Math.PI)  //ctx.rotate(75);
 
-var letra_c_rotada_2 = RotacionDeObj(letra_c_2, r)
+        ctx.translate(vt[0], vt[1]);    // retorno de la figura al punto inicial
 
-polygon(letra_c, 'red', 'yellow') //Letra C original
-
-polygon(letra_c_rotada, 'red', 'yellow') //Rotacion Letra C original
-
-polygon(letra_c_2, 'red', 'yellow') //Letra C 500 hacia abajo.
-
-polygon(letra_c_rotada_2, 'red', 'yellow') // Rotacion Letra C 500 hacia abajo.
-
-
+        polygon(coord, 'red', 'blue');
 
 
 </script>
