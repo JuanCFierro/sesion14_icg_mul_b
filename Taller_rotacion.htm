@@ -1,0 +1,85 @@
+<canvas id='canvas' width=2000 height=2000>
+<script>
+
+function polygon(a,colorBorde,colorRelleno) { //a=[20,12,34,56,78,90,112,167,34,56]
+ctx.beginPath()
+ctx.strokeStyle = colorBorde;
+ctx.fillStyle = colorRelleno;
+ctx.moveTo(a[0],a[1])
+for (i=0; i<a.length; i+=2)
+ctx.lineTo(a[i], a[i+1]);
+ctx.closePath()
+ctx.stroke();
+ctx.fill();
+
+}
+
+function rotacionPunto(cxOb,cyOb,rot){
+var mr= [[Math.cos(r), -Math.sin(r)], [Math.sin(r), Math.cos(r)]]       //Matriz de 2x2
+fill_cxOb = letra_e.length;
+c_cxOb = letra_e[0].length;
+fill_cyOb = r.length;
+c_cyOb = r[0].length;
+
+let rotacion = new Array(fill_cxOb);
+for (x=0; x<rotacion.length;x++)
+    Rotacion[x] = new Array(c_cyOb).fill(0);
+
+for (x=0; x < rotacion.length; x++) {
+        for (y=0; y < rotacion[x].length; y++) {                                
+            for (z=0; z<c_cxOb; z++) {
+                rotacion [x][y] = rotacion [x][y] + cxOb[x][z]*cyOb[z][y]; 
+}
+        }
+    }
+return rotacion;
+}
+
+	
+function RotacionDeObj(Func,Rot){
+var c = [];
+
+var m= [Math.cos(Rot), -Math.sin(Rot),Math.sin(Rot), Math.cos(Rot)]
+
+for (i=0; i < Func.length; i+=2){             //Recorriendo los vertices del objeto
+
+c[i]=(Func[i]*m[0]+Func[i+1]*m[1])            //Aplicando las multiplicaciones en pares
+c[i+1]=(Func[i]*m[2]+Func[i+1]*m[3])          //Aplicando las multiplicaciones en impares
+  
+  }
+
+return c;
+
+}
+
+	
+var canvas = document.getElementById('canvas')
+var ctx = canvas.getContext('2d');  
+
+var letra_c = [40,40, 190,40, 190,80, 85,80, 85,185, 190,185, 190,225, 40,225 ]; 
+//Se logra apreciar la rotacion de la letra C sobre el mismo eje, pero por cuestiones de limite 
+//De la pantalla, esta se corta, asi que cree otra letra con los mismos valores
+//Solo que aumentada en 500 en el eje Y para que se vea la rotacion en si.
+
+var letra_c_2 = [40,540, 190,540, 190,580, 85,580, 85,685, 190,685, 190,725, 40,725 ]; 
+//Esta sera la letra C aumentada 500 hacia abajo.
+
+
+var r = 75;
+
+var letra_c_rotada = RotacionDeObj(letra_c, r)
+
+var letra_c_rotada_2 = RotacionDeObj(letra_c_2, r)
+
+polygon(letra_c, 'red', 'yellow') //Letra C original
+
+polygon(letra_c_rotada, 'red', 'yellow') //Rotacion Letra C original
+
+polygon(letra_c_2, 'red', 'yellow') //Letra C 500 hacia abajo.
+
+polygon(letra_c_rotada_2, 'red', 'yellow') // Rotacion Letra C 500 hacia abajo.
+
+
+
+
+</script>
