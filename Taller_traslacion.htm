@@ -1,0 +1,40 @@
+<canvas id='canvas' width=2000 height=2000>
+<script>
+
+function sumaTrasl (a,b){
+var c=[];
+for (i=0; i<a.length; i+=2){
+c[i]=(a[i]+b[0])
+c[i+1]=(a[i+1]+b[1])
+}
+
+return c;
+}
+
+function polygon(a,colorBorde,colorRelleno) { //a=[20,12,34,56,78,90,112,167,34,56]
+ctx.beginPath()
+ctx.strokeStyle = colorBorde;
+ctx.fillStyle = colorRelleno;
+ctx.moveTo(a[0],a[1])
+for (i=0; i<a.length; i+=2)
+ctx.lineTo(a[i], a[i+1]);
+ctx.closePath()
+ctx.stroke();
+ctx.fill();
+
+}
+
+var canvas = document.getElementById('canvas')
+var ctx = canvas.getContext('2d');
+
+var letra_f = [40,40, 310,40, 310,100, 125,100, 125,190, 285,190, 285,255, 125,255, 125,420, 40,420 ];
+
+var vt = [250, 350]; //Vector de Traslacion
+
+var letra_f_trasladada = sumaTrasl(letra_f, vt);
+
+polygon (letra_f, 'red', 'yellow')
+polygon (letra_f_trasladada, 'red', 'yellow')
+
+
+</script> 
