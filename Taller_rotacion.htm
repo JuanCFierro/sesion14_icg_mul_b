@@ -8,7 +8,7 @@
 	/*ar m= [Math.cos(r), -Math.sin(r),Math.sin(r), Math.cos(r)]
 	for (i=0; i < a.length; i+=2){
 	z[i]=(a[i]*m[0]+a[i+1]*m[1])
-	
+	z[i+1]=(a[i]*m[2]+a[i+1]*m[3])*/
             
 
             return tr;
@@ -71,22 +71,18 @@ var canvas = document.getElementById('canvas')
 var ctx = canvas.getContext('2d');  
 
 var letra_c = [40,40, 190,40, 190,80, 85,80, 85,185, 190,185, 190,225, 40,225 ]; 
-//Se logra apreciar la rotacion de la letra C sobre el mismo eje, pero por cuestiones de limite 
-//De la pantalla, esta se corta, asi que cree otra letra con los mismos valores
-//Solo que aumentada en 500 en el eje Y para que se vea la rotacion en si.
 
-var letra_c_2 = [40,540, 190,540, 190,580, 85,580, 85,685, 190,685, 190,725, 40,725 ]; 
-//Esta sera la letra C aumentada 500 hacia abajo.
+polygon(letra_c, 'red', 'yellow');
 
+ vt = centroGeom(letra_c);    
 
- vt = centroGeom(coord);    // calcular el vecor de traslacion [x, y]
-        ctx.translate(-vt[0], -vt[1]);   // ubicacion centro de la figura en el origen de coordenadas
+        ctx.translate(-vt[0], -vt[1]);   
 
-        ctx.rotate(-4/48*Math.PI)  //ctx.rotate(75);
+        ctx.rotate(-4/48*Math.PI)  
 
-        ctx.translate(vt[0], vt[1]);    // retorno de la figura al punto inicial
+        ctx.translate(vt[0], vt[1]);    
 
-        polygon(coord, 'red', 'blue');
+        polygon(letra_c, 'red', 'yellow');
 
 
 </script>
